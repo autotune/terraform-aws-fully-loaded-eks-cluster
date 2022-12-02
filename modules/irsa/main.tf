@@ -48,7 +48,7 @@ resource "aws_iam_role" "irsa" {
         "Action" : "sts:AssumeRoleWithWebIdentity",
         "Condition" : {
           "StringLike" : {
-            "${local.eks_oidc_issuer_url}:sub" : "system:serviceaccount:${var.kubernetes_namespace}:${var.kubernetes_service_account}",
+            "${local.eks_oidc_issuer_url}:sub" : "system:serviceaccount:${var.kubernetes_namespace}:*",
             "${local.eks_oidc_issuer_url}:aud" : "sts.amazonaws.com"
           }
         }
